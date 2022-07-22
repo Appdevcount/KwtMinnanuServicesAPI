@@ -1,0 +1,1119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://itbsms.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://itbsms.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://itbsms.com/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="Http_AuthenticateUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="customerId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Http_AuthenticateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Http_AuthenticateUserResult" type="tns:AuthenticationResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AuthenticationResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseResult">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="CustomerId" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="NetPoints" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="BalanceExpirationDate" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="Senders" type="tns:ArrayOfString" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="BaseResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AuthenticateUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:SoapUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SoapUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CustomerId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AuthenticateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AuthenticateUserResult" type="tns:AuthenticationResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Http_GetSmsStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="customerId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="messageId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="detailed" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Http_GetSmsStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Http_GetSmsStatusResult" type="tns:SMSStatusResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SMSStatusResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseResult">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="NetPoints" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="Counters" type="tns:SMSCounters" />
+              <s:element minOccurs="0" maxOccurs="1" name="Numbers" type="tns:SMSNumbers" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="SMSCounters">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SentCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="QueuedCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RejectedCount" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SMSNumbers">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SentNumbers" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="QueuedNumbers" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="RejectedNumbers" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSmsStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:SoapUser" />
+            <s:element minOccurs="1" maxOccurs="1" name="messageId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="detailed" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSmsStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSmsStatusResult" type="tns:SMSStatusResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Http_SendSMS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="customerId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="senderText" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="messageBody" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="recipientNumbers" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="defDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isBlink" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="isFlash" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Http_SendSMSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Http_SendSMSResult" type="tns:SendingSMSResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SendingSMSResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseSendingResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="RejectedNumbers" type="tns:ArrayOfString" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="BaseSendingResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseResult">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="NetPoints" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="messageId" type="s1:guid" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="SendSMS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sendingRequest" type="tns:SendingSMSRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SendingSMSRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseSendingRequest">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="IsBlink" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsFlash" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="RecipientNumbers" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="BaseSendingRequest" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="User" type="tns:SoapUser" />
+          <s:element minOccurs="0" maxOccurs="1" name="SenderText" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MessageBody" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DefDate" nillable="true" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SendSMSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendSMSResult" type="tns:SendingSMSResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendSMSToDistributionList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sendingRequest" type="tns:SendingDistributionListSMSRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SendingDistributionListSMSRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseSendingRequest">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="DistributionListGuid" type="s1:guid" />
+              <s:element minOccurs="1" maxOccurs="1" name="SendToAllTheDistributionListNumbers" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Offset" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="SendSMSToDistributionListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendSMSToDistributionListResult" type="tns:SendingDistributionListSMSResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SendingDistributionListSMSResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseSendingResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="DistributionListName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="DistributionListGuid" type="s1:guid" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetAllDistributionLists">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:SoapUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllDistributionListsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllDistributionListsResult" type="tns:DistributionListsResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DistributionListsResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="DistributionLists" type="tns:ArrayOfDistributionListItem" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfDistributionListItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DistributionListItem" nillable="true" type="tns:DistributionListItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DistributionListItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Guid" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalCount" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SendSMSToAdZoneLocation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sendingRequest" type="tns:SendingAdZoneSMSRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SendingAdZoneSMSRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseSendingRequest">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="DistributionListGuid" type="s1:guid" />
+              <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="EndDate" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="SendingDays" type="tns:ArrayOfDayOfWeek" />
+              <s:element minOccurs="0" maxOccurs="1" name="SendingHours" type="s:base64Binary" />
+              <s:element minOccurs="1" maxOccurs="1" name="RecipientsCount" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfDayOfWeek">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DayOfWeek" type="tns:DayOfWeek" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DayOfWeek">
+        <s:restriction base="s:string">
+          <s:enumeration value="Sunday" />
+          <s:enumeration value="Monday" />
+          <s:enumeration value="Tuesday" />
+          <s:enumeration value="Wednesday" />
+          <s:enumeration value="Thursday" />
+          <s:enumeration value="Friday" />
+          <s:enumeration value="Saturday" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="SendSMSToAdZoneLocationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendSMSToAdZoneLocationResult" type="tns:SendingDistributionListSMSResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAdZoneLocations">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:SoapUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAdZoneLocationsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAdZoneLocationsResult" type="tns:DistributionListsResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAdZoneMessageStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:SoapUser" />
+            <s:element minOccurs="1" maxOccurs="1" name="messageId" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAdZoneMessageStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAdZoneMessageStatusResult" type="tns:AdZoneMessageStatusResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AdZoneMessageStatusResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="AdZoneMsgStatus" type="tns:AdZoneMsgStatus" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="AdZoneMsgStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CampaignName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:AdZoneMsgtate" />
+          <s:element minOccurs="1" maxOccurs="1" name="CompletionType" type="tns:AdZoneMsgCompletionType" />
+          <s:element minOccurs="1" maxOccurs="1" name="CompletionTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PartsPerMessage" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalRecipientsLimit" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalMessagePartsLimit" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalBillableRecipientsCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalBillableMessageParts" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MessageGuid" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="SentProviderMessageId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedOnUtc" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="AdZoneMsgtate">
+        <s:restriction base="s:string">
+          <s:enumeration value="Preprocessing" />
+          <s:enumeration value="QueuedForCreation" />
+          <s:enumeration value="CreatedButNotInitiated" />
+          <s:enumeration value="Pending" />
+          <s:enumeration value="Running" />
+          <s:enumeration value="Paused" />
+          <s:enumeration value="Finalizing" />
+          <s:enumeration value="Completed" />
+          <s:enumeration value="CompletedAndBilled" />
+          <s:enumeration value="Deleted" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="AdZoneMsgCompletionType">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotYetCompleted" />
+          <s:enumeration value="TargetMessagePartsLimitReached" />
+          <s:enumeration value="EndDateReached" />
+          <s:enumeration value="StoppedByUser" />
+          <s:enumeration value="StoppedByAdmin" />
+          <s:enumeration value="TerminatedByAdmin" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="Get_Queued_Messages">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="customerId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_Queued_MessagesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_Queued_MessagesResult" type="tns:Queued_Messages_Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Queued_Messages_Result">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseResult">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="QueuedCount" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="MessagesIds" type="tns:ArrayOfString" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Get_DLR_Data">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="customerId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="MessageGuid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_DLR_DataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_DLR_DataResult" type="tns:DeliveryReport_Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DeliveryReport_Result">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseResult">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="RecipientsCount" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Details" type="tns:DLR" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="DLR">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Recipient" type="tns:Recipient" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Recipient">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Number" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Network" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReportTime" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AuthenticationResult" nillable="true" type="tns:AuthenticationResult" />
+      <s:element name="SMSStatusResult" nillable="true" type="tns:SMSStatusResult" />
+      <s:element name="SendingSMSResult" nillable="true" type="tns:SendingSMSResult" />
+      <s:element name="Queued_Messages_Result" nillable="true" type="tns:Queued_Messages_Result" />
+      <s:element name="DeliveryReport_Result" nillable="true" type="tns:DeliveryReport_Result" />
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="Http_AuthenticateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:Http_AuthenticateUser" />
+  </wsdl:message>
+  <wsdl:message name="Http_AuthenticateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:Http_AuthenticateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:AuthenticateUser" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:AuthenticateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="Http_GetSmsStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:Http_GetSmsStatus" />
+  </wsdl:message>
+  <wsdl:message name="Http_GetSmsStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:Http_GetSmsStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSmsStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSmsStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetSmsStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSmsStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="Http_SendSMSSoapIn">
+    <wsdl:part name="parameters" element="tns:Http_SendSMS" />
+  </wsdl:message>
+  <wsdl:message name="Http_SendSMSSoapOut">
+    <wsdl:part name="parameters" element="tns:Http_SendSMSResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendSMSSoapIn">
+    <wsdl:part name="parameters" element="tns:SendSMS" />
+  </wsdl:message>
+  <wsdl:message name="SendSMSSoapOut">
+    <wsdl:part name="parameters" element="tns:SendSMSResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendSMSToDistributionListSoapIn">
+    <wsdl:part name="parameters" element="tns:SendSMSToDistributionList" />
+  </wsdl:message>
+  <wsdl:message name="SendSMSToDistributionListSoapOut">
+    <wsdl:part name="parameters" element="tns:SendSMSToDistributionListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDistributionListsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllDistributionLists" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDistributionListsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllDistributionListsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendSMSToAdZoneLocationSoapIn">
+    <wsdl:part name="parameters" element="tns:SendSMSToAdZoneLocation" />
+  </wsdl:message>
+  <wsdl:message name="SendSMSToAdZoneLocationSoapOut">
+    <wsdl:part name="parameters" element="tns:SendSMSToAdZoneLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAdZoneLocationsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAdZoneLocations" />
+  </wsdl:message>
+  <wsdl:message name="GetAdZoneLocationsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAdZoneLocationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAdZoneMessageStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAdZoneMessageStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetAdZoneMessageStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAdZoneMessageStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="Get_Queued_MessagesSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_Queued_Messages" />
+  </wsdl:message>
+  <wsdl:message name="Get_Queued_MessagesSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_Queued_MessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Get_DLR_DataSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_DLR_Data" />
+  </wsdl:message>
+  <wsdl:message name="Get_DLR_DataSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_DLR_DataResponse" />
+  </wsdl:message>
+  <wsdl:message name="Http_AuthenticateUserHttpGetIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="customerId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Http_AuthenticateUserHttpGetOut">
+    <wsdl:part name="Body" element="tns:AuthenticationResult" />
+  </wsdl:message>
+  <wsdl:message name="Http_GetSmsStatusHttpGetIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="customerId" type="s:string" />
+    <wsdl:part name="messageId" type="s:string" />
+    <wsdl:part name="detailed" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Http_GetSmsStatusHttpGetOut">
+    <wsdl:part name="Body" element="tns:SMSStatusResult" />
+  </wsdl:message>
+  <wsdl:message name="Http_SendSMSHttpGetIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="customerId" type="s:string" />
+    <wsdl:part name="senderText" type="s:string" />
+    <wsdl:part name="messageBody" type="s:string" />
+    <wsdl:part name="recipientNumbers" type="s:string" />
+    <wsdl:part name="defDate" type="s:string" />
+    <wsdl:part name="isBlink" type="s:string" />
+    <wsdl:part name="isFlash" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Http_SendSMSHttpGetOut">
+    <wsdl:part name="Body" element="tns:SendingSMSResult" />
+  </wsdl:message>
+  <wsdl:message name="Get_Queued_MessagesHttpGetIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="customerId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Get_Queued_MessagesHttpGetOut">
+    <wsdl:part name="Body" element="tns:Queued_Messages_Result" />
+  </wsdl:message>
+  <wsdl:message name="Get_DLR_DataHttpGetIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="customerId" type="s:string" />
+    <wsdl:part name="MessageGuid" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Get_DLR_DataHttpGetOut">
+    <wsdl:part name="Body" element="tns:DeliveryReport_Result" />
+  </wsdl:message>
+  <wsdl:message name="Http_AuthenticateUserHttpPostIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="customerId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Http_AuthenticateUserHttpPostOut">
+    <wsdl:part name="Body" element="tns:AuthenticationResult" />
+  </wsdl:message>
+  <wsdl:message name="Http_GetSmsStatusHttpPostIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="customerId" type="s:string" />
+    <wsdl:part name="messageId" type="s:string" />
+    <wsdl:part name="detailed" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Http_GetSmsStatusHttpPostOut">
+    <wsdl:part name="Body" element="tns:SMSStatusResult" />
+  </wsdl:message>
+  <wsdl:message name="Http_SendSMSHttpPostIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="customerId" type="s:string" />
+    <wsdl:part name="senderText" type="s:string" />
+    <wsdl:part name="messageBody" type="s:string" />
+    <wsdl:part name="recipientNumbers" type="s:string" />
+    <wsdl:part name="defDate" type="s:string" />
+    <wsdl:part name="isBlink" type="s:string" />
+    <wsdl:part name="isFlash" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Http_SendSMSHttpPostOut">
+    <wsdl:part name="Body" element="tns:SendingSMSResult" />
+  </wsdl:message>
+  <wsdl:message name="Get_Queued_MessagesHttpPostIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="customerId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Get_Queued_MessagesHttpPostOut">
+    <wsdl:part name="Body" element="tns:Queued_Messages_Result" />
+  </wsdl:message>
+  <wsdl:message name="Get_DLR_DataHttpPostIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="customerId" type="s:string" />
+    <wsdl:part name="MessageGuid" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Get_DLR_DataHttpPostOut">
+    <wsdl:part name="Body" element="tns:DeliveryReport_Result" />
+  </wsdl:message>
+  <wsdl:portType name="MessagingSoap">
+    <wsdl:operation name="Http_AuthenticateUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Authenticates a user.</wsdl:documentation>
+      <wsdl:input message="tns:Http_AuthenticateUserSoapIn" />
+      <wsdl:output message="tns:Http_AuthenticateUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Authenticates a user.</wsdl:documentation>
+      <wsdl:input message="tns:AuthenticateUserSoapIn" />
+      <wsdl:output message="tns:AuthenticateUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Http_GetSmsStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns the status of a specific SMS</wsdl:documentation>
+      <wsdl:input message="tns:Http_GetSmsStatusSoapIn" />
+      <wsdl:output message="tns:Http_GetSmsStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSmsStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns the status of a specific SMS</wsdl:documentation>
+      <wsdl:input message="tns:GetSmsStatusSoapIn" />
+      <wsdl:output message="tns:GetSmsStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Http_SendSMS">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends a SMS.</wsdl:documentation>
+      <wsdl:input message="tns:Http_SendSMSSoapIn" />
+      <wsdl:output message="tns:Http_SendSMSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendSMS">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends a SMS.</wsdl:documentation>
+      <wsdl:input message="tns:SendSMSSoapIn" />
+      <wsdl:output message="tns:SendSMSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendSMSToDistributionList">
+      <wsdl:input message="tns:SendSMSToDistributionListSoapIn" />
+      <wsdl:output message="tns:SendSMSToDistributionListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDistributionLists">
+      <wsdl:input message="tns:GetAllDistributionListsSoapIn" />
+      <wsdl:output message="tns:GetAllDistributionListsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendSMSToAdZoneLocation">
+      <wsdl:input message="tns:SendSMSToAdZoneLocationSoapIn" />
+      <wsdl:output message="tns:SendSMSToAdZoneLocationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAdZoneLocations">
+      <wsdl:input message="tns:GetAdZoneLocationsSoapIn" />
+      <wsdl:output message="tns:GetAdZoneLocationsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAdZoneMessageStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get the AdZone message status.</wsdl:documentation>
+      <wsdl:input message="tns:GetAdZoneMessageStatusSoapIn" />
+      <wsdl:output message="tns:GetAdZoneMessageStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_Queued_Messages">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Authenticates a user.</wsdl:documentation>
+      <wsdl:input message="tns:Get_Queued_MessagesSoapIn" />
+      <wsdl:output message="tns:Get_Queued_MessagesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_DLR_Data">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Message DLR</wsdl:documentation>
+      <wsdl:input message="tns:Get_DLR_DataSoapIn" />
+      <wsdl:output message="tns:Get_DLR_DataSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="MessagingHttpGet">
+    <wsdl:operation name="Http_AuthenticateUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Authenticates a user.</wsdl:documentation>
+      <wsdl:input message="tns:Http_AuthenticateUserHttpGetIn" />
+      <wsdl:output message="tns:Http_AuthenticateUserHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Http_GetSmsStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns the status of a specific SMS</wsdl:documentation>
+      <wsdl:input message="tns:Http_GetSmsStatusHttpGetIn" />
+      <wsdl:output message="tns:Http_GetSmsStatusHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Http_SendSMS">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends a SMS.</wsdl:documentation>
+      <wsdl:input message="tns:Http_SendSMSHttpGetIn" />
+      <wsdl:output message="tns:Http_SendSMSHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_Queued_Messages">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Authenticates a user.</wsdl:documentation>
+      <wsdl:input message="tns:Get_Queued_MessagesHttpGetIn" />
+      <wsdl:output message="tns:Get_Queued_MessagesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_DLR_Data">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Message DLR</wsdl:documentation>
+      <wsdl:input message="tns:Get_DLR_DataHttpGetIn" />
+      <wsdl:output message="tns:Get_DLR_DataHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="MessagingHttpPost">
+    <wsdl:operation name="Http_AuthenticateUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Authenticates a user.</wsdl:documentation>
+      <wsdl:input message="tns:Http_AuthenticateUserHttpPostIn" />
+      <wsdl:output message="tns:Http_AuthenticateUserHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Http_GetSmsStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns the status of a specific SMS</wsdl:documentation>
+      <wsdl:input message="tns:Http_GetSmsStatusHttpPostIn" />
+      <wsdl:output message="tns:Http_GetSmsStatusHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Http_SendSMS">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends a SMS.</wsdl:documentation>
+      <wsdl:input message="tns:Http_SendSMSHttpPostIn" />
+      <wsdl:output message="tns:Http_SendSMSHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_Queued_Messages">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Authenticates a user.</wsdl:documentation>
+      <wsdl:input message="tns:Get_Queued_MessagesHttpPostIn" />
+      <wsdl:output message="tns:Get_Queued_MessagesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_DLR_Data">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Message DLR</wsdl:documentation>
+      <wsdl:input message="tns:Get_DLR_DataHttpPostIn" />
+      <wsdl:output message="tns:Get_DLR_DataHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MessagingSoap" type="tns:MessagingSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Http_AuthenticateUser">
+      <soap:operation soapAction="http://itbsms.com/Http_AuthenticateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateUser">
+      <soap:operation soapAction="http://itbsms.com/AuthenticateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Http_GetSmsStatus">
+      <soap:operation soapAction="http://itbsms.com/Http_GetSmsStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSmsStatus">
+      <soap:operation soapAction="http://itbsms.com/GetSmsStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Http_SendSMS">
+      <soap:operation soapAction="http://itbsms.com/Http_SendSMS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSMS">
+      <soap:operation soapAction="http://itbsms.com/SendSMS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSMSToDistributionList">
+      <soap:operation soapAction="http://itbsms.com/SendSMSToDistributionList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDistributionLists">
+      <soap:operation soapAction="http://itbsms.com/GetAllDistributionLists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSMSToAdZoneLocation">
+      <soap:operation soapAction="http://itbsms.com/SendSMSToAdZoneLocation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdZoneLocations">
+      <soap:operation soapAction="http://itbsms.com/GetAdZoneLocations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdZoneMessageStatus">
+      <soap:operation soapAction="http://itbsms.com/GetAdZoneMessageStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_Queued_Messages">
+      <soap:operation soapAction="http://itbsms.com/Get_Queued_Messages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_DLR_Data">
+      <soap:operation soapAction="http://itbsms.com/Get_DLR_Data" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MessagingSoap12" type="tns:MessagingSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Http_AuthenticateUser">
+      <soap12:operation soapAction="http://itbsms.com/Http_AuthenticateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateUser">
+      <soap12:operation soapAction="http://itbsms.com/AuthenticateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Http_GetSmsStatus">
+      <soap12:operation soapAction="http://itbsms.com/Http_GetSmsStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSmsStatus">
+      <soap12:operation soapAction="http://itbsms.com/GetSmsStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Http_SendSMS">
+      <soap12:operation soapAction="http://itbsms.com/Http_SendSMS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSMS">
+      <soap12:operation soapAction="http://itbsms.com/SendSMS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSMSToDistributionList">
+      <soap12:operation soapAction="http://itbsms.com/SendSMSToDistributionList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDistributionLists">
+      <soap12:operation soapAction="http://itbsms.com/GetAllDistributionLists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSMSToAdZoneLocation">
+      <soap12:operation soapAction="http://itbsms.com/SendSMSToAdZoneLocation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdZoneLocations">
+      <soap12:operation soapAction="http://itbsms.com/GetAdZoneLocations" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdZoneMessageStatus">
+      <soap12:operation soapAction="http://itbsms.com/GetAdZoneMessageStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_Queued_Messages">
+      <soap12:operation soapAction="http://itbsms.com/Get_Queued_Messages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_DLR_Data">
+      <soap12:operation soapAction="http://itbsms.com/Get_DLR_Data" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MessagingHttpGet" type="tns:MessagingHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="Http_AuthenticateUser">
+      <http:operation location="/Http_AuthenticateUser" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Http_GetSmsStatus">
+      <http:operation location="/Http_GetSmsStatus" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Http_SendSMS">
+      <http:operation location="/Http_SendSMS" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_Queued_Messages">
+      <http:operation location="/Get_Queued_Messages" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_DLR_Data">
+      <http:operation location="/Get_DLR_Data" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MessagingHttpPost" type="tns:MessagingHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="Http_AuthenticateUser">
+      <http:operation location="/Http_AuthenticateUser" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Http_GetSmsStatus">
+      <http:operation location="/Http_GetSmsStatus" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Http_SendSMS">
+      <http:operation location="/Http_SendSMS" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_Queued_Messages">
+      <http:operation location="/Get_Queued_Messages" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_DLR_Data">
+      <http:operation location="/Get_DLR_Data" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Messaging">
+    <wsdl:port name="MessagingSoap" binding="tns:MessagingSoap">
+      <soap:address location="https://www.smsbox.com/smsgateway/services/messaging.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MessagingSoap12" binding="tns:MessagingSoap12">
+      <soap12:address location="https://www.smsbox.com/smsgateway/services/messaging.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MessagingHttpGet" binding="tns:MessagingHttpGet">
+      <http:address location="https://www.smsbox.com/smsgateway/services/messaging.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MessagingHttpPost" binding="tns:MessagingHttpPost">
+      <http:address location="https://www.smsbox.com/smsgateway/services/messaging.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

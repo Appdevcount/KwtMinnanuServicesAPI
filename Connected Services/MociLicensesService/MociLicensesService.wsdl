@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="inquireCommLicDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iMC_CommLicNumber" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="sMC_CommLicType" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="inquireCommLicDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inquireCommLicDetailsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="inquireCommLicForPerson">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sCivilId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="inquireCommLicForPersonResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inquireCommLicForPersonResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="inquireImportLicDetail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iImportLicNumber" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iImportLicType" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="inquireImportLicDetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inquireImportLicDetailResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InquireCommLicDetailsFromSvcV2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sCivilId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InquireCommLicDetailsFromSvcV2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InquireCommLicDetailsFromSvcV2Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InquireImportLicDetailsFromSvcV2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sImportNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InquireImportLicDetailsFromSvcV2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InquireImportLicDetailsFromSvcV2Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MC_inquireCommLic_Internal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strIntrefaceCallInfoAndMOCITypes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MC_inquireCommLic_InternalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MC_inquireCommLic_InternalResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MC_inquireImportLic_Internal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strIntrefaceCallInfoAndMOCITypes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MC_inquireImportLic_InternalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MC_inquireImportLic_InternalResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MC_inquireCommLicV2_Internal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sCivilId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MC_inquireCommLicV2_InternalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MC_inquireCommLicV2_InternalResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MC_inquireImpLicV2_Internal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sImportNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MC_inquireImpLicV2_InternalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MC_inquireImpLicV2_InternalResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="inquireCommLicDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:inquireCommLicDetails" />
+  </wsdl:message>
+  <wsdl:message name="inquireCommLicDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:inquireCommLicDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="inquireCommLicForPersonSoapIn">
+    <wsdl:part name="parameters" element="tns:inquireCommLicForPerson" />
+  </wsdl:message>
+  <wsdl:message name="inquireCommLicForPersonSoapOut">
+    <wsdl:part name="parameters" element="tns:inquireCommLicForPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="inquireImportLicDetailSoapIn">
+    <wsdl:part name="parameters" element="tns:inquireImportLicDetail" />
+  </wsdl:message>
+  <wsdl:message name="inquireImportLicDetailSoapOut">
+    <wsdl:part name="parameters" element="tns:inquireImportLicDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="InquireCommLicDetailsFromSvcV2SoapIn">
+    <wsdl:part name="parameters" element="tns:InquireCommLicDetailsFromSvcV2" />
+  </wsdl:message>
+  <wsdl:message name="InquireCommLicDetailsFromSvcV2SoapOut">
+    <wsdl:part name="parameters" element="tns:InquireCommLicDetailsFromSvcV2Response" />
+  </wsdl:message>
+  <wsdl:message name="InquireImportLicDetailsFromSvcV2SoapIn">
+    <wsdl:part name="parameters" element="tns:InquireImportLicDetailsFromSvcV2" />
+  </wsdl:message>
+  <wsdl:message name="InquireImportLicDetailsFromSvcV2SoapOut">
+    <wsdl:part name="parameters" element="tns:InquireImportLicDetailsFromSvcV2Response" />
+  </wsdl:message>
+  <wsdl:message name="MC_inquireCommLic_InternalSoapIn">
+    <wsdl:part name="parameters" element="tns:MC_inquireCommLic_Internal" />
+  </wsdl:message>
+  <wsdl:message name="MC_inquireCommLic_InternalSoapOut">
+    <wsdl:part name="parameters" element="tns:MC_inquireCommLic_InternalResponse" />
+  </wsdl:message>
+  <wsdl:message name="MC_inquireImportLic_InternalSoapIn">
+    <wsdl:part name="parameters" element="tns:MC_inquireImportLic_Internal" />
+  </wsdl:message>
+  <wsdl:message name="MC_inquireImportLic_InternalSoapOut">
+    <wsdl:part name="parameters" element="tns:MC_inquireImportLic_InternalResponse" />
+  </wsdl:message>
+  <wsdl:message name="MC_inquireCommLicV2_InternalSoapIn">
+    <wsdl:part name="parameters" element="tns:MC_inquireCommLicV2_Internal" />
+  </wsdl:message>
+  <wsdl:message name="MC_inquireCommLicV2_InternalSoapOut">
+    <wsdl:part name="parameters" element="tns:MC_inquireCommLicV2_InternalResponse" />
+  </wsdl:message>
+  <wsdl:message name="MC_inquireImpLicV2_InternalSoapIn">
+    <wsdl:part name="parameters" element="tns:MC_inquireImpLicV2_Internal" />
+  </wsdl:message>
+  <wsdl:message name="MC_inquireImpLicV2_InternalSoapOut">
+    <wsdl:part name="parameters" element="tns:MC_inquireImpLicV2_InternalResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MociLicensesServiceProxyWebServiceSoap">
+    <wsdl:operation name="inquireCommLicDetails">
+      <wsdl:input message="tns:inquireCommLicDetailsSoapIn" />
+      <wsdl:output message="tns:inquireCommLicDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="inquireCommLicForPerson">
+      <wsdl:input message="tns:inquireCommLicForPersonSoapIn" />
+      <wsdl:output message="tns:inquireCommLicForPersonSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="inquireImportLicDetail">
+      <wsdl:input message="tns:inquireImportLicDetailSoapIn" />
+      <wsdl:output message="tns:inquireImportLicDetailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InquireCommLicDetailsFromSvcV2">
+      <wsdl:input message="tns:InquireCommLicDetailsFromSvcV2SoapIn" />
+      <wsdl:output message="tns:InquireCommLicDetailsFromSvcV2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InquireImportLicDetailsFromSvcV2">
+      <wsdl:input message="tns:InquireImportLicDetailsFromSvcV2SoapIn" />
+      <wsdl:output message="tns:InquireImportLicDetailsFromSvcV2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MC_inquireCommLic_Internal">
+      <wsdl:input message="tns:MC_inquireCommLic_InternalSoapIn" />
+      <wsdl:output message="tns:MC_inquireCommLic_InternalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MC_inquireImportLic_Internal">
+      <wsdl:input message="tns:MC_inquireImportLic_InternalSoapIn" />
+      <wsdl:output message="tns:MC_inquireImportLic_InternalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MC_inquireCommLicV2_Internal">
+      <wsdl:input message="tns:MC_inquireCommLicV2_InternalSoapIn" />
+      <wsdl:output message="tns:MC_inquireCommLicV2_InternalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MC_inquireImpLicV2_Internal">
+      <wsdl:input message="tns:MC_inquireImpLicV2_InternalSoapIn" />
+      <wsdl:output message="tns:MC_inquireImpLicV2_InternalSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MociLicensesServiceProxyWebServiceSoap" type="tns:MociLicensesServiceProxyWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="inquireCommLicDetails">
+      <soap:operation soapAction="http://tempuri.org/inquireCommLicDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="inquireCommLicForPerson">
+      <soap:operation soapAction="http://tempuri.org/inquireCommLicForPerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="inquireImportLicDetail">
+      <soap:operation soapAction="http://tempuri.org/inquireImportLicDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InquireCommLicDetailsFromSvcV2">
+      <soap:operation soapAction="http://tempuri.org/InquireCommLicDetailsFromSvcV2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InquireImportLicDetailsFromSvcV2">
+      <soap:operation soapAction="http://tempuri.org/InquireImportLicDetailsFromSvcV2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MC_inquireCommLic_Internal">
+      <soap:operation soapAction="http://tempuri.org/MC_inquireCommLic_Internal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MC_inquireImportLic_Internal">
+      <soap:operation soapAction="http://tempuri.org/MC_inquireImportLic_Internal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MC_inquireCommLicV2_Internal">
+      <soap:operation soapAction="http://tempuri.org/MC_inquireCommLicV2_Internal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MC_inquireImpLicV2_Internal">
+      <soap:operation soapAction="http://tempuri.org/MC_inquireImpLicV2_Internal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MociLicensesServiceProxyWebServiceSoap12" type="tns:MociLicensesServiceProxyWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="inquireCommLicDetails">
+      <soap12:operation soapAction="http://tempuri.org/inquireCommLicDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="inquireCommLicForPerson">
+      <soap12:operation soapAction="http://tempuri.org/inquireCommLicForPerson" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="inquireImportLicDetail">
+      <soap12:operation soapAction="http://tempuri.org/inquireImportLicDetail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InquireCommLicDetailsFromSvcV2">
+      <soap12:operation soapAction="http://tempuri.org/InquireCommLicDetailsFromSvcV2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InquireImportLicDetailsFromSvcV2">
+      <soap12:operation soapAction="http://tempuri.org/InquireImportLicDetailsFromSvcV2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MC_inquireCommLic_Internal">
+      <soap12:operation soapAction="http://tempuri.org/MC_inquireCommLic_Internal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MC_inquireImportLic_Internal">
+      <soap12:operation soapAction="http://tempuri.org/MC_inquireImportLic_Internal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MC_inquireCommLicV2_Internal">
+      <soap12:operation soapAction="http://tempuri.org/MC_inquireCommLicV2_Internal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MC_inquireImpLicV2_Internal">
+      <soap12:operation soapAction="http://tempuri.org/MC_inquireImpLicV2_Internal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MociLicensesServiceProxyWebService">
+    <wsdl:port name="MociLicensesServiceProxyWebServiceSoap" binding="tns:MociLicensesServiceProxyWebServiceSoap">
+      <soap:address location="http://kca2tkp2/KGACMOCIServices/MociLicensesService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MociLicensesServiceProxyWebServiceSoap12" binding="tns:MociLicensesServiceProxyWebServiceSoap12">
+      <soap12:address location="http://kca2tkp2/KGACMOCIServices/MociLicensesService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

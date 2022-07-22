@@ -1,0 +1,77 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace ETradeAPI.Models
+{
+    public class User : SecurityParams
+    {
+        public string FirstName { set; get; }        
+        public string LastName { set; get; }
+        public string CivilId  { set; get; }
+        public string MobileTelNumber { set; get; }
+        public string EmailId  { set; get; }
+        public string Pass  { set; get; }
+        public string Language { set; get; }
+        public int CaptchaId { get; set; }
+        public string CaptchaValue { get; set; }
+
+
+        public string LegalEntity { set; get; }
+        public string Gender { set; get; }
+        public List<EService> AvailableEServices { get; set; }
+        public List<Organization> AvailableOrganizations { get; set; }
+
+        public string SelectedServices { get; set; }
+        public string SelectedOrganizations { get; set; }
+
+        public string LicenceNumber { get; set; }
+
+        public bool ExistingUser { get; set; }
+        public string TradeLicenseNumber { get; set; }
+        public string GeneralBrokerLicenseNumber { get; set; }
+        public string MCUserID { get; set; }
+        public string MCPassword { get; set; }
+        public bool IsAdmin { get; set; }
+
+
+        public bool SubUser { get; set; }
+        public int ParentID { get; set; }
+        public string Token { get; set; }//added newly for additional user cross check for - security feedback -Siraj
+
+    }
+    public class EService
+    {
+        public int SubscriptionID { get; set; }
+        public int ServiceID { get; set; }
+        public string ServiceNameEng { get; set; }
+        public string ServiceNameAra { get; set; }
+    }
+    public class Organization
+    {
+        public int OrganizationId { get; set; }
+        public string OrgNameEng { get; set; }
+        public string OrgNameAra { get; set; }
+    }
+    public class ReqObj
+    {
+        public int ParentID { get; set; }
+        public int ChildUser { get; set; }
+        public string Action { get; set; }
+        public string CommonData { get; set; }
+        public string CommonData1 { get; set; }
+        public string CommonData2 { get; set; }
+    }
+
+    public class ServicesAndOrgManagementFortheUser
+    {
+        public int UserID { get; set; }
+        public string ServiceID { get; set; }
+        public string SubscriptionID { get; set; }
+        public bool isLinked { get; set; }
+        public int ParentUserID { get; set; }
+        public string OrganizationID { get; set; }
+        public string ActionType { get; set; }
+    }
+}

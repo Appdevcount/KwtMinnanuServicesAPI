@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s1="http://www.dpskw.com/licenseDetal" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:import namespace="http://www.dpskw.com/licenseDetal" />
+      <s:element name="GetPAILicenseDetail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="licenseNO" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPAILicenseDetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPAILicenseDetailResult" type="s1:licenseDetail" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.dpskw.com/licenseDetal">
+      <s:complexType name="licenseDetail">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="applicantCivilId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="firstLicenseIssueDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="licenseCancelDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="industryType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="productionKInd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="companyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="poBoxNr" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="telephoneNr" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="faxNr" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="licenseActive" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="commercialName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="licenseStatus" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="licenseStartDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="licenseEndDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="statutsRemark" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="applicantName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="commercialRegistrationNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="industrialRegisttionNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="industrialRegistrationDate" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetPAILicenseDetailSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPAILicenseDetail" />
+  </wsdl:message>
+  <wsdl:message name="GetPAILicenseDetailSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPAILicenseDetailResponse" />
+  </wsdl:message>
+  <wsdl:portType name="PAIProxyServiceSoap">
+    <wsdl:operation name="GetPAILicenseDetail">
+      <wsdl:input message="tns:GetPAILicenseDetailSoapIn" />
+      <wsdl:output message="tns:GetPAILicenseDetailSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PAIProxyServiceSoap" type="tns:PAIProxyServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetPAILicenseDetail">
+      <soap:operation soapAction="http://tempuri.org/GetPAILicenseDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PAIProxyServiceSoap12" type="tns:PAIProxyServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetPAILicenseDetail">
+      <soap12:operation soapAction="http://tempuri.org/GetPAILicenseDetail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PAIProxyService">
+    <wsdl:port name="PAIProxyServiceSoap" binding="tns:PAIProxyServiceSoap">
+      <soap:address location="http://kca2tkp2/KGACPAIPROXYSVR/PAIProxyService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PAIProxyServiceSoap12" binding="tns:PAIProxyServiceSoap12">
+      <soap12:address location="http://kca2tkp2/KGACPAIPROXYSVR/PAIProxyService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
